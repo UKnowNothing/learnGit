@@ -1,0 +1,16 @@
+name: Docker CI
+
+on: [push] # 执行时机
+
+jobs:
+
+  build: # 一个名叫build的任务（名字可以随便起）
+    runs-on: ubuntu-latest # 基于最新版Ubuntu系统执行下列任务
+    steps:
+    - uses: actions/checkout@v1 # 将仓库内容拷贝到Ubuntu系统的虚拟环境
+    - name: Build the Docker image # 步骤名字
+      run: |
+        docker login --username=葬爱家族の族长 registry.cn-hangzhou.aliyuncs.com --password=123.Duxiang # 登录docker，并使用Secret里配置的参数
+        docker build -t test:latest . #执行构建
+        docker tag test registry.cn-hangzhou.aliyuncs.com/coldcoder_docker/test
+        docker push registry.cn-hangzhou.aliyuncs.com/coldcoder_docker/test:latest # 推送
