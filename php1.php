@@ -1,3 +1,3 @@
 <?php>
 the best language in the world
-now is java
+now is python
